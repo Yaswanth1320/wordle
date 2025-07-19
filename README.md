@@ -59,7 +59,7 @@ src/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Yaswanth1320/wordle
+   git clone https://github.com/Yaswanth1320/wordle.git
    cd wordle
    ```
 
