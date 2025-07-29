@@ -1,50 +1,217 @@
-# Welcome to your Expo app 👋
+# 🎯 WORDLE X 
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern, feature-rich Wordle clone built with React Native and Expo, featuring multiple difficulty levels, high score tracking, and a beautiful dark theme UI.
 
-## Get started
+## ✨ Features
 
-1. Install dependencies
+### 🎮 Game Features
+- **Multiple Difficulty Levels**:
+  - **Easy**: 4-letter words, 6 attempts
+  - **Medium**: 5-letter words, 6 attempts  
+  - **Hard**: 8-letter words, 8 attempts
+- **Smart Word Validation**: Real-time dictionary checking
+- **Visual Feedback**: Color-coded letter tiles with animations
+- **Keyboard Integration**: On-screen keyboard with visual feedback
+- **Game State Management**: Win/lose detection and streak tracking
 
+### 🏆 Scoring & Progress
+- **High Score Tracking**: Persistent storage for each difficulty level
+- **Player Names**: Save your name with high scores
+- **Solved Streak**: Track consecutive wins
+- **Score History**: View top 5 scores per difficulty
+
+### 🎨 UI/UX Features
+- **Dark Theme**: Modern dark interface with green accents
+- **Smooth Animations**: Tile flip animations and keyboard feedback
+- **Responsive Design**: Works on mobile, tablet, and web
+- **Haptic Feedback**: Tactile responses for better UX
+- **Confetti Celebration**: Visual celebration on wins
+
+### 🔧 Technical Features
+- **Cross-Platform**: iOS, Android, and Web support
+- **Offline Capable**: Works without internet connection
+- **Performance Optimized**: Smooth 60fps animations
+- **Accessibility**: Screen reader support and keyboard navigation
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+- Expo CLI (`npm install -g @expo/cli`)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Yaswanth1320/wordle.git
+   cd wordle
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-2. Start the app
-
+3. **Start the development server**
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+4. **Run on your preferred platform**
+   ```bash
+   # iOS Simulator
+   npx expo start --ios
+   
+   # Android Emulator
+   npx expo start --android
+   
+   # Web Browser
+   npx expo start --web
+   ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🎯 How to Play
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+1. **Select Difficulty**: Choose from Easy, Medium, or Hard
+2. **Guess the Word**: Type your guess using the on-screen keyboard
+3. **Get Feedback**: 
+   - 🟩 Green: Letter is correct and in right position
+   - 🟨 Yellow: Letter is correct but in wrong position
+   - ⬛ Gray: Letter is not in the word
+4. **Win or Try Again**: You have 6-8 attempts depending on difficulty
 
-## Get a fresh project
+## 🏗️ Project Structure
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+wordle/
+├── app/                    # Main app screens
+│   ├── _layout.tsx        # Root layout
+│   ├── difficulty.jsx     # Difficulty selection screen
+│   ├── game.jsx          # Main game screen
+│   └── index.jsx         # Home screen
+├── components/            # Reusable components
+│   ├── DifficultySelector.js
+│   ├── Keyboard.js
+│   ├── Modals.js
+│   ├── WordGrid.js
+│   ├── useModals.js
+│   └── useWordleGame.js
+├── constants/            # Game constants and config
+│   └── gameConstants.js
+├── services/            # API services
+│   └── apiService.js
+├── styles/              # Global styles
+│   └── globalStyles.js
+├── utils/               # Utility functions
+│   ├── gameUtils.js
+│   └── wordLists.js
+└── assets/              # Images and fonts
+    └── fonts/
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🛠️ Technologies Used
 
-## Learn more
+- **React Native**: Cross-platform mobile development
+- **Expo**: Development platform and tools
+- **Expo Router**: File-based routing
+- **AsyncStorage**: Local data persistence
+- **React Native Confetti**: Celebration animations
+- **Expo Haptics**: Tactile feedback
+- **Michroma Font**: Custom typography
 
-To learn more about developing your project with Expo, look at the following resources:
+## 🎨 Customization
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Colors
+The game uses a consistent color scheme defined in `constants/gameConstants.js`:
+- Primary: `#121213` (Dark background)
+- Accent: `#4CAF50` (Green for success)
+- Error: `#F44336` (Red for errors)
+- Difficulty colors: Green (Easy), Yellow (Medium), Red (Hard)
 
-## Join the community
+### Fonts
+- **Michroma**: Primary game font
+- **Space Mono**: Monospace font for technical elements
 
-Join our community of developers creating universal apps.
+## 📱 Platform Support
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- ✅ iOS (iPhone & iPad)
+- ✅ Android (Phone & Tablet)
+- ✅ Web (Desktop & Mobile browsers)
+
+## 🔧 Development
+
+### Available Scripts
+```bash
+npm start          # Start Expo development server
+npm run android    # Run on Android emulator
+npm run ios        # Run on iOS simulator
+npm run web        # Run in web browser
+npm run lint       # Run ESLint
+```
+
+### Key Components
+
+#### `useWordleGame.js`
+Main game logic hook managing:
+- Word selection and validation
+- Game state management
+- Score tracking
+- Difficulty handling
+
+#### `Keyboard.js`
+On-screen keyboard component with:
+- Visual feedback for key states
+- Color-coded key backgrounds
+- Responsive layout
+
+#### `WordGrid.js`
+Game board component featuring:
+- Animated tile flips
+- Color-coded feedback
+- Responsive grid layout
+
+## 🚀 Deployment
+
+### Building for Production
+
+1. **Configure EAS Build**
+   ```bash
+   npx eas build:configure
+   ```
+
+2. **Build for platforms**
+   ```bash
+   # iOS
+   npx eas build --platform ios
+   
+   # Android
+   npx eas build --platform android
+   ```
+
+3. **Submit to stores**
+   ```bash
+   npx eas submit --platform ios
+   npx eas submit --platform android
+   ```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Inspired by the original [Wordle](https://www.nytimes.com/games/wordle/index.html) game
+- Built with [Expo](https://expo.dev) and [React Native](https://reactnative.dev)
+- Icons from [Expo Vector Icons](https://icons.expo.fyi)
+
+---
+
+
