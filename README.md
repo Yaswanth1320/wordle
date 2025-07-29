@@ -1,184 +1,50 @@
-# Wordle React Native App
+# Welcome to your Expo app 👋
 
-A production-level Wordle game built with React Native, featuring a clean architecture and modern development practices.
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## 🏗️ Project Structure
+## Get started
 
-```
-src/
-├── components/          # Reusable UI components
-│   ├── WordGrid.js     # Game board component
-│   ├── Keyboard.js     # Virtual keyboard component
-│   └── Modals.js       # Modal components
-├── constants/          # Application constants
-│   └── gameConstants.js # Game configuration and constants
-├── hooks/              # Custom React hooks
-│   ├── useWordleGame.js # Main game logic hook
-│   └── useModals.js    # Modal state management hook
-├── services/           # API and external services
-│   └── apiService.js   # API calls and data fetching
-├── styles/             # Global styles and theming
-│   └── globalStyles.js # Application-wide styles
-├── utils/              # Utility functions
-│   └── gameUtils.js    # Game logic utilities
-└── App.js              # Main application component
-```
+1. Install dependencies
 
-## 🚀 Features
-
-### Core Game Features
-- ✅ **Wordle Gameplay**: Complete Wordle game with 6 attempts
-- ✅ **Word Validation**: Dictionary API integration for word validation
-- ✅ **Color Feedback**: Green/Yellow/Gray color system
-- ✅ **Keyboard Integration**: Virtual keyboard with color feedback
-- ✅ **Game Over Handling**: Shows correct answer after 6 tries
-
-### User Experience
-- ✅ **Quick Invalid Word Modal**: Auto-dismissing modal for invalid words
-- ✅ **Game Over Modal**: Shows correct answer with reset option
-- ✅ **Responsive Design**: Works on different screen sizes
-- ✅ **Loading States**: Proper loading indicators
-- ✅ **Error Handling**: Comprehensive error management
-
-### Technical Features
-- ✅ **Clean Architecture**: Separation of concerns with hooks, services, and utilities
-- ✅ **Type Safety**: JSDoc comments for better development experience
-- ✅ **Performance Optimized**: Efficient re-renders and state management
-- ✅ **Modular Design**: Reusable components and utilities
-- ✅ **API Integration**: Wordle API and Dictionary API
-
-## 🛠️ Technologies Used
-
-- **React Native**: Cross-platform mobile development
-- **Expo**: Development platform and tools
-- **Custom Hooks**: State management and business logic
-- **API Integration**: Wordle API and Dictionary API
-- **Modern JavaScript**: ES6+ features and async/await
-
-## 📱 Installation & Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Yaswanth1320/wordle.git
-   cd wordle
-   ```
-
-2. **Install dependencies**
    ```bash
    npm install
    ```
 
-3. **Start the development server**
+2. Start the app
+
    ```bash
-   npm start
+   npx expo start
    ```
 
-4. **Run on device/simulator**
-   ```bash
-   # iOS
-   npm run ios
-   
-   # Android
-   npm run android
-   
-   # Web
-   npm run web
-   ```
+In the output, you'll find options to open the app in a
 
-## 🎮 How to Play
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-1. **Start the Game**: The app loads with a random 5-letter word
-2. **Make Guesses**: Type 5-letter words using the virtual keyboard
-3. **Get Feedback**: 
-   - 🟩 Green: Letter is in correct position
-   - 🟨 Yellow: Letter is in word but wrong position
-   - ⬛ Gray: Letter is not in word
-4. **Win or Lose**: 
-   - Win by guessing the word in 6 tries or less
-   - Lose after 6 incorrect guesses
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## 🔧 Configuration
+## Get a fresh project
 
-### Game Constants (`src/constants/gameConstants.js`)
-- `MAX_ATTEMPTS`: Number of allowed guesses (6)
-- `WORD_LENGTH`: Length of target word (5)
-- `ANIMATION_DELAYS`: Timing for animations
-- `API_ENDPOINTS`: API URLs for word validation
+When you're ready, run:
 
-### Colors (`src/constants/gameConstants.js`)
-- `GREEN`: Correct letter, correct position
-- `YELLOW`: Correct letter, wrong position
-- `LIGHT_BLACK`: Letter not in word
-- `WHITE`: Default keyboard color
+```bash
+npm run reset-project
+```
 
-## 🏗️ Architecture Overview
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-### Custom Hooks
-- **`useWordleGame`**: Manages game state, API calls, and game logic
-- **`useModals`**: Handles modal visibility and animations
+## Learn more
 
-### Services
-- **`apiService`**: Handles all external API calls
-  - Word validation via Dictionary API
-  - Game submission via Wordle API
-  - Answer discovery for game over
+To learn more about developing your project with Expo, look at the following resources:
 
-### Utilities
-- **`gameUtils`**: Pure functions for game logic
-  - Color calculations
-  - Word validation
-  - State management helpers
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-### Components
-- **`WordGrid`**: Renders the game board with guesses
-- **`Keyboard`**: Virtual keyboard with color feedback
-- **`Modals`**: Various modal components for user feedback
+## Join the community
 
-## 🔌 API Integration
+Join our community of developers creating universal apps.
 
-### Wordle API
-- **Endpoint**: `https://wordle-api.vercel.app/api/wordle`
-- **Method**: POST
-- **Purpose**: Submit guesses and get character feedback
-
-### Dictionary API
-- **Endpoint**: `https://api.dictionaryapi.dev/api/v2/entries/en/{word}`
-- **Method**: GET
-- **Purpose**: Validate if words exist in English dictionary
-
-## 🎨 Styling
-
-The app uses a centralized styling system with:
-- **Global Styles**: Consistent design tokens
-- **Color Constants**: Centralized color management
-- **Responsive Design**: Adapts to different screen sizes
-- **Dark Theme**: Optimized for dark mode
-
-## 🧪 Development
-
-### Adding New Features
-1. Create new components in `src/components/`
-2. Add utilities in `src/utils/`
-3. Update constants in `src/constants/`
-4. Add styles in `src/styles/`
-
-### Testing
-- Console logs for debugging game state
-- API response logging
-- Error boundary handling
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📞 Support
-
-For questions or issues, please open an issue in the repository. 
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.

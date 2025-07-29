@@ -1,12 +1,12 @@
 import React from "react";
 import {
-  View,
+  Dimensions,
+  Platform,
   Text,
   TouchableOpacity,
-  Platform,
-  Dimensions,
+  View,
 } from "react-native";
-import { globalStyles, COLORS } from "../styles/globalStyles";
+import { globalStyles } from "../styles/globalStyles";
 import { getKeyColor } from "../utils/gameUtils";
 
 const { width: screenWidth } = Dimensions.get("window");
@@ -14,19 +14,15 @@ const { width: screenWidth } = Dimensions.get("window");
 const KEY_ROWS = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
   ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
-  // The last row will be handled separately for DEL and ENTER placement
   ["Z", "X", "C", "V", "B", "N", "M"],
 ];
 
 const Keyboard = ({ onKeyPress, guesses }) => {
-  // Responsive keyboard width
   const keyboardWidth =
-    Platform.OS === "web" ? Math.min(600, screenWidth - 32) : screenWidth - 32;
+    Platform.OS === "web" ? Math.min(600, screenWidth - 64) : screenWidth - 64;
 
-  // Helper to get key background color (white for unused, colored for used)
   const getKeyBackgroundColor = (key) => {
     const color = getKeyColor(key, guesses);
-    // If color is white or light gray, use white background
     return color === "#ffffff" || color === "#818384" ? "#ffffff" : color;
   };
 
@@ -37,7 +33,6 @@ const Keyboard = ({ onKeyPress, guesses }) => {
         { width: keyboardWidth, alignSelf: "center" },
       ]}
     >
-      {/* First two rows */}
       {KEY_ROWS.slice(0, 2).map((row, rowIndex) => (
         <View style={globalStyles.keyboardRow} key={rowIndex}>
           {row.map((key) => (
@@ -51,7 +46,7 @@ const Keyboard = ({ onKeyPress, guesses }) => {
               activeOpacity={0.7}
             >
               <Text
-                style={[globalStyles.keyText, { fontSize: 20, color: "#000" }]}
+                style={[globalStyles.keyText, { fontSize: 16, color: "#000" }]}
               >
                 {key}
               </Text>
@@ -59,7 +54,6 @@ const Keyboard = ({ onKeyPress, guesses }) => {
           ))}
         </View>
       ))}
-      {/* Third row: only letter keys */}
       <View style={globalStyles.keyboardRow}>
         {KEY_ROWS[2].map((key) => (
           <TouchableOpacity
@@ -72,26 +66,25 @@ const Keyboard = ({ onKeyPress, guesses }) => {
             activeOpacity={0.7}
           >
             <Text
-              style={[globalStyles.keyText, { fontSize: 20, color: "#000" }]}
+              style={[globalStyles.keyText, { fontSize: 16, color: "#000" }]}
             >
               {key}
             </Text>
           </TouchableOpacity>
         ))}
       </View>
-      {/* Fourth row: DELETE and ENTER centered side by side */}
       <View style={[globalStyles.keyboardRow, { justifyContent: "center" }]}>
         <TouchableOpacity
           key="BACKSPACE"
           style={[
             globalStyles.key,
             globalStyles.specialKey,
-            { backgroundColor: "#8B0000", marginRight: 12 }, // Dark red for DELETE
+            { backgroundColor: "#8B0000", marginRight: 12 },
           ]}
           onPress={() => onKeyPress("BACKSPACE")}
           activeOpacity={0.7}
         >
-          <Text style={[globalStyles.keyText, { fontSize: 16, color: "#fff" }]}>
+          <Text style={[globalStyles.keyText, { fontSize: 14, color: "#fff" }]}>
             DELETE
           </Text>
         </TouchableOpacity>
@@ -100,12 +93,12 @@ const Keyboard = ({ onKeyPress, guesses }) => {
           style={[
             globalStyles.key,
             globalStyles.specialKey,
-            { backgroundColor: "#228B22", marginLeft: 12 }, // Green for ENTER
+            { backgroundColor: "#228B22", marginLeft: 12 },
           ]}
           onPress={() => onKeyPress("ENTER")}
           activeOpacity={0.7}
         >
-          <Text style={[globalStyles.keyText, { fontSize: 18, color: "#fff" }]}>
+          <Text style={[globalStyles.keyText, { fontSize: 15, color: "#fff" }]}>
             ENTER
           </Text>
         </TouchableOpacity>

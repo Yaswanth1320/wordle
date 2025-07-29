@@ -1,32 +1,22 @@
-import React from "react";
-import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { globalStyles } from "../styles/globalStyles";
 import { MaterialIcons } from "@expo/vector-icons";
+import React from "react";
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { globalStyles } from "../styles/globalStyles";
 
-/**
- * Modal for when user tries to submit an incomplete word
- */
 export const FillAllBlanksModal = ({ visible, onDismiss }) => {
   return (
     <Modal
       visible={visible}
-      transparent={true}
+      transparent
       animationType="fade"
       onRequestClose={onDismiss}
     >
       <View style={globalStyles.modalOverlay}>
         <View style={[globalStyles.modalContainer, { paddingVertical: 32 }]}>
-          <Text
-            style={[
-              globalStyles.modalTitle,
-              { fontFamily: "Michroma-Regular" },
-            ]}
-          >
-            Fill All Blanks
+          <Text style={[globalStyles.modalTitle, { fontFamily: "Michroma" }]}>
+            Invalid Size
           </Text>
-          <Text
-            style={[globalStyles.modalText, { fontFamily: "Michroma-Regular" }]}
-          >
+          <Text style={[globalStyles.modalText, { fontFamily: "Michroma" }]}>
             Please fill all letter blocks before submitting your guess.
           </Text>
           <TouchableOpacity
@@ -34,10 +24,7 @@ export const FillAllBlanksModal = ({ visible, onDismiss }) => {
             onPress={onDismiss}
           >
             <Text
-              style={[
-                globalStyles.modalButtonText,
-                { fontFamily: "Michroma-Regular" },
-              ]}
+              style={[globalStyles.modalButtonText, { fontFamily: "Michroma" }]}
             >
               OK
             </Text>
@@ -48,14 +35,11 @@ export const FillAllBlanksModal = ({ visible, onDismiss }) => {
   );
 };
 
-/**
- * Modal for when user submits an invalid word
- */
-export const InvalidWordModal = ({ visible, word, onDismiss }) => {
+export const InvalidWordModal = ({ visible, onDismiss }) => {
   return (
     <Modal
       visible={visible}
-      transparent={true}
+      transparent
       animationType="fade"
       onRequestClose={onDismiss}
     >
@@ -79,7 +63,7 @@ export const InvalidWordModal = ({ visible, word, onDismiss }) => {
           <Text
             style={[
               globalStyles.modalTitle,
-              { fontFamily: "Michroma-Regular", color: "#fff" },
+              { color: "#fff", fontFamily: "Michroma" },
             ]}
           >
             Invalid Word
@@ -87,14 +71,10 @@ export const InvalidWordModal = ({ visible, word, onDismiss }) => {
           <Text
             style={[
               globalStyles.modalText,
-              {
-                fontFamily: "Michroma-Regular",
-                color: "#fff",
-                textAlign: "center",
-              },
+              { color: "#fff", textAlign: "center", fontFamily: "Michroma" },
             ]}
           >
-            This word not exsits
+            This word does not exist.
           </Text>
           <TouchableOpacity
             style={[
@@ -106,7 +86,7 @@ export const InvalidWordModal = ({ visible, word, onDismiss }) => {
             <Text
               style={[
                 globalStyles.modalButtonText,
-                { fontFamily: "Michroma-Regular", color: "#ff4444" },
+                { color: "#ff4444", fontFamily: "Michroma" },
               ]}
             >
               Try Again
@@ -118,14 +98,11 @@ export const InvalidWordModal = ({ visible, word, onDismiss }) => {
   );
 };
 
-/**
- * Modal for when user guesses the correct word
- */
 export const CorrectWordModal = ({ visible, word, onNextWord }) => {
   return (
     <Modal
       visible={visible}
-      transparent={true}
+      transparent
       animationType="fade"
       onRequestClose={onNextWord}
     >
@@ -134,37 +111,37 @@ export const CorrectWordModal = ({ visible, word, onNextWord }) => {
           <Text
             style={[
               globalStyles.modalTitle,
-              { color: "#4CAF50", fontFamily: "Michroma-Regular" },
+              { color: "#4CAF50", fontFamily: "Michroma" },
             ]}
           >
             Correct!
           </Text>
-
-          {/* Display the word with all green letters */}
-          <View style={styles.wordDisplay}>
-            {word?.split("").map((letter, index) => (
-              <View
-                key={index}
-                style={[styles.letterBox, { backgroundColor: "#4CAF50" }]}
-              >
-                <Text
-                  style={[
-                    styles.letterText,
-                    { fontFamily: "Michroma-Regular" },
-                  ]}
-                >
-                  {letter.toUpperCase()}
-                </Text>
-              </View>
-            ))}
-          </View>
-
           <Text
-            style={[globalStyles.modalText, { fontFamily: "Michroma-Regular" }]}
+            style={[
+              globalStyles.modalText,
+              {
+                fontFamily: "Michroma",
+                fontSize: word && word.length > 6 ? 13 : 15,
+                flexWrap: "wrap",
+                textAlign: "center",
+                marginBottom: 8,
+              },
+            ]}
           >
-            You found the word "{word?.toUpperCase()}"!
+            You found the word
           </Text>
+          <Text
+            style={{
+              color: "#4CAF50",
+              fontFamily: "Michroma",
+              fontSize: word && word.length > 6 ? 18 : 22,
 
+              textAlign: "center",
+              marginBottom: 8,
+            }}
+          >
+            {word?.toUpperCase()}
+          </Text>
           <TouchableOpacity
             style={[globalStyles.modalButton, { backgroundColor: "#4CAF50" }]}
             onPress={onNextWord}
@@ -172,7 +149,7 @@ export const CorrectWordModal = ({ visible, word, onNextWord }) => {
             <Text
               style={[
                 globalStyles.modalButtonText,
-                { color: "#ffffff", fontFamily: "Michroma-Regular" },
+                { color: "#ffffff", fontFamily: "Michroma" },
               ]}
             >
               Next Word
@@ -184,24 +161,16 @@ export const CorrectWordModal = ({ visible, word, onNextWord }) => {
   );
 };
 
-/**
- * Quick modal for invalid word (brief notification)
- */
 export const QuickInvalidWordModal = ({ visible }) => {
   if (!visible) return null;
 
   return (
     <View style={styles.quickModal}>
-      <Text style={[styles.quickModalText, { fontFamily: "Michroma-Regular" }]}>
-        Invalid word!
-      </Text>
+      <Text style={styles.quickModalText}>Invalid word!</Text>
     </View>
   );
 };
 
-/**
- * Modal for game over state
- */
 export const GameOverModal = ({
   visible,
   correctAnswer,
@@ -211,7 +180,7 @@ export const GameOverModal = ({
   return (
     <Modal
       visible={visible}
-      transparent={true}
+      transparent
       animationType="fade"
       onRequestClose={onRequestClose}
     >
@@ -220,26 +189,32 @@ export const GameOverModal = ({
           <Text
             style={[
               globalStyles.modalTitle,
-              { fontFamily: "Michroma-Regular" },
+              { color: "#e11d48", fontFamily: "Michroma" },
             ]}
           >
             Game Over
           </Text>
           <Text
-            style={[globalStyles.modalText, { fontFamily: "Michroma-Regular" }]}
+            style={[
+              globalStyles.modalText,
+              { color: "#e11d48", fontFamily: "Michroma" },
+            ]}
           >
-            The correct word was: {correctAnswer}
+            The correct word was:
           </Text>
-          <TouchableOpacity style={globalStyles.modalButton} onPress={onReset}>
-            <Text
-              style={[
-                globalStyles.modalButtonText,
-                { fontFamily: "Michroma-Regular" },
-              ]}
-            >
-              Next Word
-            </Text>
-          </TouchableOpacity>
+          <Text
+            style={[
+              globalStyles.modalText,
+              {
+                color: "#fff",
+                fontFamily: "Michroma",
+                fontSize: 18,
+                marginTop: 4,
+              },
+            ]}
+          >
+            {correctAnswer}
+          </Text>
         </View>
       </View>
     </Modal>
@@ -260,8 +235,7 @@ const styles = StyleSheet.create({
   },
   quickModalText: {
     color: "#ffffff",
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: 14,
   },
   wordDisplay: {
     flexDirection: "row",
@@ -280,7 +254,6 @@ const styles = StyleSheet.create({
   },
   letterText: {
     color: "#ffffff",
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 16,
   },
 });
